@@ -1,12 +1,15 @@
 <?php
 include 'components/connect.php';
+
 session_start();
+
 if (isset($_SESSION['user_id'])) {
   $user_id = $_SESSION['user_id'];
 } else {
   $user_id = '';
 };
 
+include 'components/add_cart.php';
 ?>
 
 <!DOCTYPE html>
@@ -77,10 +80,10 @@ if (isset($_SESSION['user_id'])) {
       <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
         <img src="assets/buffback.webp" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">empty title</h5>
-          <p class="card-text">Rp. 50.000</p>
+          <h5 class="card-title">tes cart</h5>
+          <p class="card-text">Rp. 55.555</p>
           <p class="card-text"><small class="text-body-secondary">by abcstoremurah</small></p>
-          <a href="#" class="btn btn-cart">Add to Cart</a>
+          <button type="submit" class="btn btn-cart" name="add_to_cart">Keranjang</button>
         </div>
       </div>
       <div class="shadow-sm card py-2 mb-4" style="width: 18rem;">
