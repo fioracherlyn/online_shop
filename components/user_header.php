@@ -51,7 +51,7 @@ if (isset($message)) {
                $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                ?>
                welcome,
-               <?= $fetch_profile['name']; ?>
+               <a href="profile.php" class="profile"><?= $fetch_profile['name']; ?></a>
                <?php
             } else {
                ?>

@@ -93,6 +93,17 @@
    text-decoration: underline;
 }
 
+.profile {
+   color: var(--black);
+   text-decoration: none;
+   margin: 0 0 0 .4rem;
+}
+
+.header .flex .navbar .container .profile:hover {
+   color:var(--primary);
+   text-decoration: underline;
+}
+
 .header .flex .navbar a span{
    margin-left: .6rem;
    padding:.3rem .7rem;
