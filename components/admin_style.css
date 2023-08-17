@@ -53,17 +53,15 @@ section{
    padding:2rem;
 }
 
-.btn {
-   color: var(--primary);
-}
+/* .btn {
+   font-size: 1.8rem;
+} */
 
+.btn,
 .btn-logout,
 .btn-register{
-   display: block;
-   margin-top: 1rem;
    border-radius: .5rem;
    cursor: pointer;
-   /* width: 100%; */
    font-size: 1.4rem;
    color:var(--white);
    padding:1rem 2.4rem;
@@ -81,6 +79,11 @@ section{
 .btn-logout:hover {
    border: 2px solid var(--secondary);
    color: var(--secondary) !important;
+   text-transform: capitalize;
+}
+.btn-register:hover {
+   border: 2px solid green;
+   color: green !important;
    text-transform: capitalize;
 }
 
@@ -220,10 +223,12 @@ section{
    margin:0 1rem;
    font-size: 2rem;
    color:var(--light-color);
+   text-decoration: none;
 }
 
 .header .flex .navbar a:hover{
    color:var(--primary);
+   text-decoration: underline;
 }
 
 .header .flex .icons > *{
@@ -231,10 +236,6 @@ section{
    cursor: pointer;
    color:var(--light-color);
    margin-left: 1.7rem;
-}
-
-.header .flex .icons > *:hover{
-   color:var(--primary);
 }
 
 .header .flex .profile{
@@ -273,7 +274,7 @@ section{
 }
 
 .dashboard .box-container{
-   display: grid;
+   display: flex;
    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
    gap:1.5rem;
    align-items: flex-start;
@@ -290,7 +291,13 @@ section{
 }
 
 .dashboard .box-container .box h3{
-   font-size: 2.7rem;
+   padding:1.5rem;
+   border-radius: .5rem;
+   background-color: var(--white);
+   border-radius: .5rem;
+   font-size: 1.8rem;
+   /* font-weight: bold; */
+   border:var(--border);
    color:var(--black);
 }
 
@@ -299,14 +306,8 @@ section{
 }
 
 .dashboard .box-container .box p{
-   padding:1.5rem;
-   border-radius: .5rem;
-   background-color: var(--white);
-   border-radius: .5rem;
-   font-size: 1.8rem;
-   border:var(--border);
-   margin:1rem 0;
-   color:var(--light-color);
+   font-size: 2.7rem;
+   color:var(--black);
 }
 
 .add-products form{

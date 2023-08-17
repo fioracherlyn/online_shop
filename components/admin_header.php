@@ -21,7 +21,7 @@ if (isset($message)) {
                      <a href="dashboard.php">home</a>
                   </li>
                   <li class="nav-item">
-                     <a href="products.php">products</a>
+                     <a href="add_products.php">products</a>
                   </li>
                   <li class="nav-item">
                      <a href="placed_orders.php">orders</a>
@@ -41,8 +41,10 @@ if (isset($message)) {
       </nav>
 
       <div class="flex-btn">
-            <a href="register_admin.php" class="btn btn-register ms-3">register</a>
-            <a href="admin_logout.php" onclick="return confirm('logout from this website?');" class="btn btn-logout ms-3">logout</a>
+            <!-- <a href="register_admin.php" class="btn btn-register ms-3">register</a> -->
+            <a href="register_admin.php" class="btn btn-success ms-3">register</a>
+            <!-- <a href="admin_logout.php" onclick="return confirm('logout from this website?');" class="btn btn-logout ms-3">logout</a> -->
+            <a href="admin_logout.php" onclick="return confirm('logout from this website?');" class="btn btn-danger ms-3">logout</a>
          </div>
 
       <div class="profile">
