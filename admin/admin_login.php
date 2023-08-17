@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
       crossorigin="anonymous"></script>
 
    <!-- link to custom css -->
-   <link rel="stylesheet" href="../components/style.css">
+   <link rel="stylesheet" href="../components/admin_style.css">
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -76,16 +76,6 @@ if(isset($message)){
 </section>
 
 <!-- admin login form section ends -->
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

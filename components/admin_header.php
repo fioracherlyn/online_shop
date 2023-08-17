@@ -40,10 +40,10 @@ if (isset($message)) {
          </div>
       </nav>
 
-      <div class="icons">
-         <div id="menu-btn" class="fas fa-bars"></div>
-         <div id="user-btn" class="fas fa-user"></div>
-      </div>
+      <div class="flex-btn">
+            <a href="register_admin.php" class="btn btn-register ms-3">register</a>
+            <a href="admin_logout.php" onclick="return confirm('logout from this website?');" class="btn btn-logout ms-3">logout</a>
+         </div>
 
       <div class="profile">
          <?php
