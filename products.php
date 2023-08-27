@@ -12,6 +12,9 @@ if (isset($_SESSION['user_id'])) {
 ;
 
 include 'components/add_cart.php';
+
+$select_products = $conn->prepare("SELECT * FROM `products`");
+$select_products->execute();
 ?>
 
 <!DOCTYPE html>
@@ -41,55 +44,19 @@ include 'components/add_cart.php';
 
    <?php include 'components/user_header.php'; ?>
 
-   <section class="container">
-
-      <div class="row d-flex justify-content-around py-3 my-3">
-         <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
-            <div class="card-body">
-               <img src="assets/buffback.webp" class="card-img-top" alt="...">
-               <h5 class="card-title">tes cart</h5>
-               <p class="card-text">Rp. 55.555</p>
-               <p class="card-text"><small class="text-body-secondary">by abcstoremurah</small></p>
-               <button type="submit" class="btn btn-cart" name="add_to_cart">Keranjang</button>
-            </div>
-         </div>
-         <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
-            <div class="card-body">
-               <img src="assets/buffback.webp" class="card-img-top" alt="...">
-               <h5 class="card-title">tes cart</h5>
-               <p class="card-text">Rp. 55.555</p>
-               <p class="card-text"><small class="text-body-secondary">by abcstoremurah</small></p>
-               <button type="submit" class="btn btn-cart" name="add_to_cart">Keranjang</button>
-            </div>
-         </div>
-         <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
-            <div class="card-body">
-               <img src="assets/buffback.webp" class="card-img-top" alt="...">
-               <h5 class="card-title">tes cart</h5>
-               <p class="card-text">Rp. 55.555</p>
-               <p class="card-text"><small class="text-body-secondary">by abcstoremurah</small></p>
-               <button type="submit" class="btn btn-cart" name="add_to_cart">Keranjang</button>
-            </div>
-         </div>
-         <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
-            <div class="card-body">
-               <img src="assets/buffback.webp" class="card-img-top" alt="...">
-               <h5 class="card-title">tes cart</h5>
-               <p class="card-text">Rp. 55.555</p>
-               <p class="card-text"><small class="text-body-secondary">by abcstoremurah</small></p>
-               <button type="submit" class="btn btn-cart" name="add_to_cart">Keranjang</button>
-            </div>
-         </div>
-
-         <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
-            <div class="card-body">
+   <section class="show-products" style="padding-top: 0;">
+      <div class="box-container">
+         <?php
+         if ($select_products->rowCount() > 0) {
+            while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
+               ?>
                <form action="" method="post" class="box">
                   <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                   <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
                   <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
                   <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
                   <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-                  <!-- <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a> -->
+                  <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
                   <div class="card-title">
                      <?= $fetch_products['name']; ?>
                   </div>
@@ -99,38 +66,14 @@ include 'components/add_cart.php';
                   <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
                   <button type="submit" name="add_to_cart">add to cart</button>
                </form>
-            </div>
-         </div>
+               <?php
+            }
+         } else {
+            echo '<p class="empty">no products added yet!</p>';
+         }
+         ?>
       </div>
 
-      <?php
-      $select_products = $conn->prepare("SELECT * FROM `products`");
-      $select_products->execute();
-      if ($select_products->rowCount() > 0) {
-         while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
-            ?>
-            <form action="" method="post" class="box">
-               <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-               <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
-               <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
-               <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
-               <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-               <!-- <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a> -->
-               <div class="card-title">
-                  <?= $fetch_products['name']; ?>
-               </div>
-               <div class="card-text"><span>Rp. </span>
-                  <?= $fetch_products['price']; ?>
-               </div>
-               <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
-               <button type="submit" name="add_to_cart">add to cart</button>
-            </form>
-            <?php
-         }
-      } else {
-         echo '<p class="empty">no products added yet!</p>';
-      }
-      ?>
    </section>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

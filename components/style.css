@@ -332,3 +332,54 @@
 .message i:hover{
    color:var(--black);
 }
+
+.show-products .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 33rem);
+   gap:1.5rem;
+   justify-content: center;
+   align-items: flex-start;
+}
+
+.show-products .box-container .box{
+   background-color: var(--white);
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+   border:var(--border);
+   padding:1.5rem;
+}
+
+.show-products .box-container .box img{
+   width: 100%;
+   height: 20rem;
+   object-fit: contain;
+   margin-bottom: 1rem;
+}
+
+.show-products .box-container .box .name{
+   font-size: 2rem;
+   color:var(--black);
+   padding:1rem 0;
+}
+
+.show-products .box-container .box .flex{
+   display: flex;
+   align-items: center;
+   gap:1rem;
+   justify-content: space-between;
+}
+
+.show-products .box-container .box .flex .category{
+   font-size: 1.8rem;
+   color:var(--primary);
+}
+
+.show-products .box-container .box .flex .price{
+   font-size: 2rem;
+   color:var(--black);
+   margin:.5rem 0;
+}
+
+.show-products .box-container .box .flex .price span{
+   font-size: 1.5rem;
+}
