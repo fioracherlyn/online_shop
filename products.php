@@ -44,13 +44,13 @@ $select_products->execute();
 
    <?php include 'components/user_header.php'; ?>
 
-   <section class="show-products" style="padding-top: 0;">
-      <div class="box-container">
+   <section class="container">
+      <div class="row d-flex justify-content-around py-3 my-3">
          <?php
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
                ?>
-               <form action="" method="post" class="box">
+               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
                   <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                   <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
                   <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
