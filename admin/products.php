@@ -48,7 +48,6 @@ if (isset($_POST['add_product'])) {
 }
 
 if (isset($_GET['delete'])) {
-
    $delete_id = $_GET['delete'];
    $delete_product_image = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
    $delete_product_image->execute([$delete_id]);
@@ -59,8 +58,13 @@ if (isset($_GET['delete'])) {
    $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE pid = ?");
    $delete_cart->execute([$delete_id]);
    header('location:products.php');
-
 }
+
+$show_products = $conn->prepare("SELECT * FROM `products`");
+$show_products->execute();
+
+$admin_name = $conn->prepare("SELECT * FROM `admin`");
+$admin_name->execute();
 
 ?>
 
@@ -72,18 +76,18 @@ if (isset($_GET['delete'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- link to bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
 
-  <!-- link to custom css -->
-  <link rel="stylesheet" href="../components/admin_style.css">
+   <!-- link to custom css -->
+   <link rel="stylesheet" href="../components/admin_style.css">
 
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <title>Situs Jual Beli Online Terlengkap</title>
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <title>Situs Jual Beli Online Terlengkap</title>
 </head>
 
 <body>
@@ -121,8 +125,6 @@ if (isset($_GET['delete'])) {
       <div class="box-container">
 
          <?php
-         $show_products = $conn->prepare("SELECT * FROM `products`");
-         $show_products->execute();
          if ($show_products->rowCount() > 0) {
             while ($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)) {
                ?>
@@ -139,11 +141,10 @@ if (isset($_GET['delete'])) {
                   <div class="name">
                      <?= $fetch_products['name']; ?>
                   </div>
-                  <div class="flex-btn">
-                     <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-                     <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn"
-                        onclick="return confirm('delete this product?');">delete</a>
-                  </div>
+                  <p>post by <?= $fetch_products['post_by'] ?></p>
+                  <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="btn primary-btn">update</a>
+                  <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="btn danger-btn"
+                     onclick="return confirm('delete this product?');">delete</a>
                </div>
                <?php
             }

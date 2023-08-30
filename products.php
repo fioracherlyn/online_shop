@@ -44,7 +44,7 @@ $select_products->execute();
 
    <?php include 'components/user_header.php'; ?>
 
-   <section class="container">
+   <section class="container products">
       <div class="row d-flex justify-content-around py-3 my-3">
          <?php
          if ($select_products->rowCount() > 0) {
@@ -56,15 +56,20 @@ $select_products->execute();
                   <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
                   <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
                   <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-                  <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
-                  <div class="card-title">
-                     <?= $fetch_products['name']; ?>
+                  <div class="card-body">
+                     <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
+                     <div class="card-title fs-5">
+                        <?= $fetch_products['name']; ?>
+                     </div>
+                     <div class="d-flex justify-content-between fw-bold">
+                        <div class="card-text fs-4"><span>Rp. </span>
+                           <?= $fetch_products['price']; ?>
+                        </div>
+                        <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
+                     </div>
+                     <p class="card-text"><small class="text-body-secondary">stok dari toko</small></p>
+                     <button type="submit" class="btn btn-cart" name="add_to_cart">Add to Cart</button>
                   </div>
-                  <div class="card-text"><span>Rp. </span>
-                     <?= $fetch_products['price']; ?>
-                  </div>
-                  <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
-                  <button type="submit" name="add_to_cart">add to cart</button>
                </form>
                <?php
             }

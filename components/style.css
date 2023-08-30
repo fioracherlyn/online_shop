@@ -4,7 +4,7 @@
 :root{
    --primary:#525fe1;
    --secondary:#f76f01;
-   --light-color:#666;
+   --gray:#666;
    --light-bg:#fff7f5;
    --white:#fff;
    --black:#2c3e50;
@@ -162,7 +162,7 @@
 .footer .grid .box a{
    display: block;
    font-size: 16px;
-   color:var(--light-color);
+   color:var(--gray);
    line-height: 1.8;
 }
 
@@ -288,11 +288,11 @@
 .form-container form p{
    margin-top: 10px;
    font-size: 20px;
-   color:var(--light-color);
+   color:var(--gray);
 }
 
 .form-container form p a{
-   color: var(--light-color);
+   color: var(--gray);
    transition: .1s;
 }
 .form-container form p a:hover{
@@ -333,53 +333,21 @@
    color:var(--black);
 }
 
-/* .show-products .box-container{
-   display: grid;
-   grid-template-columns: repeat(auto-fit, 33rem);
-   gap:1.5rem;
+.products .card .card-body .cat {
+   text-decoration: none;
+   color: #666;
+   
+}
+
+.products .card .card-body .cat:hover {
+   text-decoration: underline;
+   color: var(--black);
+}
+
+.products .card .card-body .qty {
+   padding: 8px;
    justify-content: center;
-   align-items: flex-start;
+   /* color: var(--secondary); */
+   border: 2px solid var(--secondary);
+   border-radius: 8px;
 }
-
-.show-products .box-container .box{
-   background-color: var(--white);
-   border-radius: .5rem;
-   box-shadow: var(--box-shadow);
-   border:var(--border);
-   padding:1.5rem;
-}
-
-.show-products .box-container .box img{
-   width: 100%;
-   height: 20rem;
-   object-fit: contain;
-   margin-bottom: 1rem;
-}
-
-.show-products .box-container .box .name{
-   font-size: 2rem;
-   color:var(--black);
-   padding:1rem 0;
-}
-
-.show-products .box-container .box .flex{
-   display: flex;
-   align-items: center;
-   gap:1rem;
-   justify-content: space-between;
-}
-
-.show-products .box-container .box .flex .category{
-   font-size: 1.8rem;
-   color:var(--primary);
-}
-
-.show-products .box-container .box .flex .price{
-   font-size: 2rem;
-   color:var(--black);
-   margin:.5rem 0;
-}
-
-.show-products .box-container .box .flex .price span{
-   font-size: 1.5rem;
-} */

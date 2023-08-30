@@ -17,9 +17,9 @@ if (isset($message)) {
          <div class="container">
             <div class="collapse navbar-collapse">
                <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                      <a href="dashboard.php">home</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                      <a href="products.php">products</a>
                   </li>
