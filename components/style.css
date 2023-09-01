@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 
 :root{
    --primary:#525fe1;
    --secondary:#f76f01;
-   --gray:#666;
+   --light-gray:#f0f0f0;
+   --gray: #666;
    --light-bg:#fff7f5;
    --white:#fff;
    --black:#2c3e50;
@@ -73,19 +73,19 @@
    border-radius: 18px;
 }
 
-.header{
-   position: sticky;
-   top:0; left:0; right:0;
-   z-index: 1000;
-   background-color: var(--white);
-   border-bottom: var(--border);
-}
-
-.collapse a {
+.header .flex .navbar .container .collapse a {
    font-size: 1.2rem;
    color:var(--black);
    margin:0 1rem;
    text-decoration: none;
+}
+
+.header{
+   position: sticky;
+   top:0; left:0; right:0;
+   z-index: 100;
+   background-color: var(--white);
+   border-bottom: var(--border);
 }
 
 .header .flex .navbar .collapse a:hover{
@@ -122,13 +122,6 @@
 .cart-btn:hover {
    color:var(--primary);
    text-decoration: underline;
-}
-
-.header .flex .icons > *{
-   margin-left: 1.5rem;
-   font-size: 2.5rem;
-   color:var(--black);
-   cursor: pointer;
 }
 
 .footer .grid{
@@ -183,7 +176,8 @@
    /* padding-bottom: 10rem; */
 }
 
-.d-flex .card:hover {
+.products .d-flex .card:hover {
+   /* cursor: pointer; */
    transform: scale(1.03);
    box-shadow: #2c3e50;
 }
@@ -269,22 +263,6 @@
    color: var(--secondary);
 }
 
-.login-btn {
-   background-color: transparent;
-   border: var(--primary) solid 2px;
-   border-radius: 4px;
-   color:var(--primary);
-   font-size: 18px;
-   cursor: pointer;
-   text-decoration: none;
-   font-weight: bold;
-}
-
-.login-btn:hover {
-   background: var(--primary);
-   color:#fff;
-}
-
 .form-container form p{
    margin-top: 10px;
    font-size: 20px;
@@ -347,7 +325,11 @@
 .products .card .card-body .qty {
    padding: 8px;
    justify-content: center;
-   /* color: var(--secondary); */
    border: 2px solid var(--secondary);
    border-radius: 8px;
+}
+
+.products .card .card-body .fa-trash {
+   margin-top: 10px;
+   border-radius: 6px;
 }

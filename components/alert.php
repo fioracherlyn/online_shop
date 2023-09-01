@@ -13,7 +13,7 @@ if(isset($warning_msg)){
 }
 
 if(isset($info_msg)){
-   foreach($info_msg as $success_msg){
+   foreach($info_msg as $info_msg){
       echo '<script>swal("'.$info_msg.'", "" ,"info");</script>';
    }
 }
@@ -23,5 +23,4 @@ if(isset($error_msg)){
       echo '<script>swal("'.$error_msg.'", "" ,"error");</script>';
    }
 }
-
 ?>

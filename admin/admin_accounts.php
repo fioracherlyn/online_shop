@@ -34,7 +34,6 @@ if(isset($_GET['delete'])){
 
    <!-- link to custom css -->
    <link rel="stylesheet" href="../components/style.css">
-   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    <title>Situs Jual Beli Online Terlengkap</title>

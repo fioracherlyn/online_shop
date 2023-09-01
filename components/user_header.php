@@ -55,8 +55,7 @@ if (isset($message)) {
                <?php
             } else {
                ?>
-               welcome, guest!
-               <!-- <a href="login.php" class="login-btn px-2">login</a> -->
+               welcome, guest!   
                <a href="login.php" class="btn btn-login ms-3">login</a>
                <?php
             }

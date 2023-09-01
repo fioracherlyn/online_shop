@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
       $_SESSION['user_id'] = $row['id'];
       header('location:index.php');
    }else{
-      $warning_msg[] = 'incorrect username or password!';
+      $error_msg[] = 'incorrect username or password!';
    }
 
 }
@@ -54,11 +54,11 @@ if(isset($_POST['submit'])){
 
 </head>
 
-<style>
+<!-- <style>
    ::-webkit-scrollbar {
       display: none;
    }
-</style>
+</style> -->
 
 <body>
 

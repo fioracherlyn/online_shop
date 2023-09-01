@@ -13,3 +13,7 @@ document.querySelectorAll('input[type="number"]').forEach(inputNumber => {
       if(inputNumber.value.length > inputNumber.maxLength) inputNumber.value = inputNumber.value.slice(0, inputNumber.maxLength);
    };
 });
+
+// function quickView() {
+//    href
+// }

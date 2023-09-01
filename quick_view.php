@@ -7,14 +7,12 @@ session_start();
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
-   header('location:login.php');
+   $user_id = '';
 }
 ;
 
 include 'components/add_cart.php';
 
-$select_products = $conn->prepare("SELECT * FROM `products`");
-$select_products->execute();
 ?>
 
 <!DOCTYPE html>
@@ -37,39 +35,43 @@ $select_products->execute();
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    <title>Situs Jual Beli Online Terlengkap</title>
-
 </head>
 
 <body>
 
    <?php include 'components/user_header.php'; ?>
 
-   <section class="container products">
+   <section class="container quick-view">
       <div class="row d-flex justify-content-around py-3 my-3">
+         <h1 class="title">quick view</h1>
          <?php
+         $pid = $_GET['pid'];
+         $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
+         $select_products->execute([$pid]);
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
                ?>
-               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
+               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 40%">
                   <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                   <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
                   <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
                   <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
-                  <input type="hidden" name="post_by" value="<?= $fetch_products['post_by']; ?>">
-                  <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-                  <div class="card-body">
-                     <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
-                     <div class="card-title fs-5">
-                        <?= $fetch_products['name']; ?>
-                     </div>
-                     <div class="d-flex justify-content-between fw-bold">
-                        <div class="card-text fs-4"><span>Rp. </span>
-                           <?= $fetch_products['price']; ?>
+                  <div class="d-flex w-100">
+                     <img src="uploaded_img/<?= $fetch_products['image']; ?>" class="card" style="width: 18rem;">
+                     <div class="row">
+                        <a href="category.php?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
+                        <div class="name">
+                           <?= $fetch_products['name']; ?>
                         </div>
-                        <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
+                        <div class="flex">
+                           <div class="price"><span>$</span>
+                              <?= $fetch_products['price']; ?>
+                           </div>
+                           <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
+                           <button type="submit" name="add_to_cart" class="btn btn-cart">add to cart</button>
+                        </div>
                      </div>
-                     <p class="card-text"><small class="text-body-secondary">dari <?= $fetch_products['post_by']; ?></small></p>
-                     <button type="submit" class="btn btn-cart" name="add_to_cart">Add to Cart</button>
+
                   </div>
                </form>
                <?php
@@ -79,12 +81,16 @@ $select_products->execute();
          }
          ?>
       </div>
-
    </section>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+   <?php include 'components/footer.php'; ?>
+
+   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+   <!-- custom js file link  -->
    <script src="js/script.js"></script>
-   <?php include 'components/alert.php'; ?>
+
+
 </body>
 
 </html>

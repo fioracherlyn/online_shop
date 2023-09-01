@@ -3,13 +3,14 @@ include 'components/connect.php';
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
+if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
-}else{
+} else {
    $user_id = '';
-};
+}
+;
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
@@ -26,18 +27,18 @@ if(isset($_POST['submit'])){
    $select_user->execute([$email, $number]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
-   if($select_user->rowCount() > 0){
-      $message[] = 'email or number already exists!';
-   }else{
-      if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
-      }else{
+   if ($select_user->rowCount() > 0) {
+      $warning_msg[] = 'email or number already exists!';
+   } else {
+      if ($pass != $cpass) {
+         $warning_msg[] = 'confirm password not matched!';
+      } else {
          $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
          $insert_user->execute([$name, $email, $number, $cpass]);
          $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
          $select_user->execute([$email, $pass]);
          $row = $select_user->fetch(PDO::FETCH_ASSOC);
-         if($select_user->rowCount() > 0){
+         if ($select_user->rowCount() > 0) {
             $_SESSION['user_id'] = $row['id'];
             header('location:index.php');
          }
@@ -49,8 +50,9 @@ if(isset($_POST['submit'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+   <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- link to bootstrap -->
@@ -77,35 +79,30 @@ if(isset($_POST['submit'])){
 
 
 <body>
-   
-<!-- header section starts  -->
-<?php include 'components/user_header.php'; ?>
-<!-- header section ends -->
 
-<div class="form-container">
+   <!-- header section starts  -->
+   <?php include 'components/user_header.php'; ?>
+   <!-- header section ends -->
 
-   <form action="" method="post">
-      <h3>register now</h3>
-      <?php
-      if(isset($error)){
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
-         };
-      };
-      ?>
-      <input type="text" name="name" required placeholder="enter your name">
-      <input type="email" name="email" required placeholder="enter your email">
-      <input type="number" name="number" required placeholder="enter your number">
-      <input type="password" name="pass" required placeholder="enter your password">
-      <input type="password" name="cpass" required placeholder="confirm your password">
-      <input type="submit" name="submit" value="register now" class="form-btn">
-      <p>already have an account? <a href="login.php">login now</a></p>
-   </form>
+   <div class="form-container">
+      <form action="" method="post">
+         <h3>register now</h3>
+         <input type="text" name="name" required placeholder="enter your name">
+         <input type="email" name="email" required placeholder="enter your email">
+         <input type="number" name="number" required placeholder="enter your number">
+         <input type="password" name="pass" required placeholder="enter your password">
+         <input type="password" name="cpass" required placeholder="confirm your password">
+         <input type="submit" name="submit" value="register now" class="form-btn">
+         <p>already have an account? <a href="login.php">login now</a></p>
+      </form>
+   </div>
 
-</div>
-
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
+   <!-- script -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+   <script src="js/script.js"></script>
+   <?php include 'components/alert.php'; ?>
+   <!-- script end -->
 
 </body>
+
 </html>

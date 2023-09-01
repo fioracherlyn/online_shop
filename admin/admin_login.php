@@ -65,7 +65,6 @@ if(isset($message)){
 <!-- admin login form section starts  -->
 
 <section class="form-container">
-
    <form action="" method="POST">
       <h3>login now</h3>
       <p>default username = <span>admin</span> & password = <span>111</span></p>
