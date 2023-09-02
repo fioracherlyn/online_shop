@@ -11,6 +11,7 @@ if (isset($_SESSION['user_id'])) {
 ;
 
 include 'components/add_cart.php';
+
 $select_products = $conn->prepare("SELECT * FROM `products`");
 $select_products->execute();
 ?>
@@ -117,6 +118,7 @@ $select_products->execute();
   <script src="js/script.js"></script>
   <?php include 'components/alert.php'; ?>
   <!-- script end -->
+  
   <?php include 'components/footer.php'; ?>
 </body>
 

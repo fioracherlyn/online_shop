@@ -30,10 +30,10 @@ if (isset($_POST['add_product'])) {
    $select_products->execute([$name]);
 
    if ($select_products->rowCount() > 0) {
-      $success_msg[] = 'product name already exists!';
+      $warning_msg[] = 'product name already exists!';
    } else {
       if ($image_size > 2000000) {
-         $success_msg[] = 'image size is too large';
+         $warning_msg[] = 'image size is too large';
       } else {
          move_uploaded_file($image_tmp_name, $image_folder);
          $insert_product = $conn->prepare("INSERT INTO `products`(name, category, price, image, post_by) VALUES(?,?,?,?,?)");
@@ -92,7 +92,7 @@ if (isset($_GET['delete'])) {
       <form action="" method="POST" enctype="multipart/form-data">
          <h3>add product</h3>
          <input type="text" required placeholder="enter product name" name="name" maxlength="100" class="box">
-         <input type="number" min="0" max="9999999999" required placeholder="enter product price" name="price"
+         <input type="number" min="0" max="999999" required placeholder="enter product price" name="price"
             onkeypress="if(this.value.length == 10) return false;" class="box">
          <select name="category" class="box" required>
             <option value="" disabled selected>select category --</option>

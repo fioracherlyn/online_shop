@@ -12,6 +12,8 @@ if (isset($_SESSION['user_id'])) {
 
 if (isset($_POST['submit'])) {
 
+   // $image = $_POST['image'];
+   // $image = filter_var($image, FILTER_SANITIZE_STRING);
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
@@ -22,6 +24,10 @@ if (isset($_POST['submit'])) {
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
    $cpass = sha1($_POST['cpass']);
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $photo = $_FILES['photo']['name'];
+   $photo = filter_var($photo, FILTER_SANITIZE_STRING);
+   $photo_tmp_name = $_FILES['photo']['tmp_name'];
+   $photo_folder = 'uploaded_photo/' . $photo;
 
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
    $select_user->execute([$email, $number]);
@@ -33,8 +39,9 @@ if (isset($_POST['submit'])) {
       if ($pass != $cpass) {
          $warning_msg[] = 'confirm password not matched!';
       } else {
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
-         $insert_user->execute([$name, $email, $number, $cpass]);
+         move_uploaded_file($photo_tmp_name, $photo_folder);
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password, photo) VALUES(?,?,?,?,?)");
+         $insert_user->execute([$name, $email, $number, $cpass, $photo]);
          $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
          $select_user->execute([$email, $pass]);
          $row = $select_user->fetch(PDO::FETCH_ASSOC);
@@ -71,13 +78,6 @@ if (isset($_POST['submit'])) {
 
 </head>
 
-<style>
-   ::-webkit-scrollbar {
-      display: none;
-   }
-</style>
-
-
 <body>
 
    <!-- header section starts  -->
@@ -85,14 +85,15 @@ if (isset($_POST['submit'])) {
    <!-- header section ends -->
 
    <div class="form-container">
-      <form action="" method="post">
+      <form action="" method="POST" enctype="multipart/form-data">
          <h3>register now</h3>
-         <input type="text" name="name" required placeholder="enter your name">
-         <input type="email" name="email" required placeholder="enter your email">
-         <input type="number" name="number" required placeholder="enter your number">
-         <input type="password" name="pass" required placeholder="enter your password">
-         <input type="password" name="cpass" required placeholder="confirm your password">
-         <input type="submit" name="submit" value="register now" class="form-btn">
+         <input type="file" class="box" name="photo" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+         <input type="text" class="box" name="name" required placeholder="enter your name">
+         <input type="email" class="box" name="email" required placeholder="enter your email">
+         <input type="number" class="box" name="number" required placeholder="enter your number">
+         <input type="password" class="box" name="pass" required placeholder="enter your password">
+         <input type="password" class="box" name="cpass" required placeholder="confirm your password">
+         <input type="submit" name="submit" value="register now" class="box form-btn">
          <p>already have an account? <a href="login.php">login now</a></p>
       </form>
    </div>

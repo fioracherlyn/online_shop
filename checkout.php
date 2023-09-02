@@ -13,7 +13,6 @@ if (isset($_SESSION['user_id'])) {
 ;
 
 if (isset($_POST['submit'])) {
-
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $number = $_POST['number'];
@@ -83,9 +82,9 @@ if (isset($_POST['submit'])) {
    <!-- header section ends -->
 
    <section class="container checkout">
-      <div class="shadow-sm card py-2 mb-4 mb-4" style="width: 24rem;">
-         <form action="" method="post">
-            <div class="cart-items">
+      <div class="row d-flex justify-content-around py-3 my-3">
+         <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 26rem;">
+            <div class="cart-items border bg-secondary-subtle p-3">
                <h3>cart items</h3>
                <?php
                $grand_total = 0;
@@ -100,41 +99,48 @@ if (isset($_POST['submit'])) {
                      ?>
                      <p><span class="name">
                            <?= $fetch_cart['name']; ?>
-                        </span><span class="price">$
+                        </span><span class="price">Rp.
                            <?= $fetch_cart['price']; ?> x
                            <?= $fetch_cart['quantity']; ?>
                         </span></p>
                      <?php
                   }
                } else {
-                  echo '<p class="empty">your cart is empty!</p>';
+                  echo '<p class="empty color-danger bg-danger">your cart is empty!</p>';
                }
                ?>
-               <p class="grand-total"><span class="name">grand total :</span><span class="price">$
+               <p class="grand-total"><span class="name">grand total: </span><span class="price">Rp.
                      <?= $grand_total; ?>
                   </span></p>
-               <a href="cart.php" class="btn">veiw cart</a>
+               <a href="cart.php" class="btn btn-outline-success">view cart</a>
             </div>
-   
+
             <input type="hidden" name="total_products" value="<?= $total_products; ?>">
             <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
             <input type="hidden" name="name" value="<?= $fetch_profile['name'] ?>">
             <input type="hidden" name="number" value="<?= $fetch_profile['number'] ?>">
             <input type="hidden" name="email" value="<?= $fetch_profile['email'] ?>">
             <input type="hidden" name="address" value="<?= $fetch_profile['address'] ?>">
-   
+
             <div class="user-info">
+               <hr>
                <h3>your info</h3>
-               <p><i class="fas fa-user"></i><span>
-                     <?= $fetch_profile['name'] ?>
-                  </span></p>
+               <p>
+               <div class="profile_photo" style="size: 30%;">
+                  <img src="uploaded_photo/<?= $fetch_profile['photo']; ?>" onerror="this.src='assets/undeined.jpeg';">
+               </div>
+               <span>
+                  <?= $fetch_profile['name'] ?>
+               </span>
+               </p>
                <p><i class="fas fa-phone"></i><span>
                      <?= $fetch_profile['number'] ?>
                   </span></p>
                <p><i class="fas fa-envelope"></i><span>
                      <?= $fetch_profile['email'] ?>
                   </span></p>
-               <a href="update_profile.php" class="btn">update info</a>
+               <a href="update_profile_checkout.php" class="btn btn-outline-warning">update profile</a>
+               <hr>
                <h3>delivery address</h3>
                <p><i class="fas fa-map-marker-alt"></i><span>
                      <?php if ($fetch_profile['address'] == '') {
@@ -151,13 +157,11 @@ if (isset($_POST['submit'])) {
                   <option value="paytm">paytm</option>
                   <option value="paypal">paypal</option>
                </select>
-               <input type="submit" value="place order"
-                  class="btn <?php if ($fetch_profile['address'] == '') {
-                     echo 'disabled';
-                  } ?>"
-                  style="width:100%; background:var(--red); color:var(--white);" name="submit">
+               <input type="submit" value="place order" class="btn btn-success w-100 <?php if ($fetch_profile['address'] == '') {
+                  echo 'disabled';
+               } ?>" name="submit">
             </div>
-         </form>    
+         </form>
       </div>
    </section>
 

@@ -77,9 +77,9 @@ if(isset($_POST['submit'])){
          }
          ;
          ?>
-         <input type="email" name="email" required placeholder="enter your email" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="password" name="pass" required placeholder="enter your password" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" name="submit" value="login now" class="form-btn">
+         <input type="email" class="box" name="email" required placeholder="enter your email" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="password" class="box" name="pass" required placeholder="enter your password" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="submit" name="submit" value="login now" class="box form-btn">
          <p>don't have an account? <a href="register.php">register now</a></p>
       </form>
 

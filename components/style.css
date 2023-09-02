@@ -93,13 +93,13 @@
    text-decoration: underline;
 }
 
-.profile {
+.account_name {
    color: var(--black);
    text-decoration: none;
    margin: 0 0 0 .4rem;
 }
 
-.header .flex .navbar .container .profile:hover {
+.header .flex .navbar .container .account_name:hover {
    color:var(--primary);
    text-decoration: underline;
 }
@@ -191,7 +191,7 @@
    color: white;
 }
 
-.card img{
+.card > img{
    width: 100%;
    height: 240px;
    object-fit: contain;
@@ -230,7 +230,7 @@
    color:#333;
 }
 
-.form-container form input,
+.form-container form .box,
 .form-container form select{
    width: 100%;
    padding:10px 15px;
@@ -333,3 +333,16 @@
    margin-top: 10px;
    border-radius: 6px;
 }
+
+.profile_photo {
+   display: flex;
+   justify-content: center;
+}
+
+.profile_photo > img {
+   border: 2px solid var(--black);
+   border-radius: 50%;
+   width: 240px;
+   height: 240px;
+}
+

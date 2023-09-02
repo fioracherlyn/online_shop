@@ -96,7 +96,7 @@ $grand_total = 0;
                $grand_total += $sub_total;
             }
          } else {
-            echo '<p class="empty">your cart is empty</p>';
+            echo '<h1 class="d-flex align-items-center justify-content-center border shadow-sm" style="height: 60vh;">your cart is empty!</h1>';
          }
          ?>
       </div>
@@ -117,6 +117,7 @@ $grand_total = 0;
 
    <!-- custom js file link  -->
    <script src="js/script.js"></script>
+   <!-- custom js file link  -->
 
 </body>
 

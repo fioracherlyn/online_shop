@@ -8,8 +8,7 @@ if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    header('location:login.php');
-}
-;
+};
 
 include 'components/add_cart.php';
 
@@ -82,9 +81,12 @@ $select_products->execute();
 
    </section>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-   <script src="js/script.js"></script>
-   <?php include 'components/alert.php'; ?>
+  <!-- script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="js/script.js"></script>
+  <?php include 'components/alert.php'; ?>
+  <!-- script end -->
+
 </body>
 
 </html>
