@@ -16,7 +16,7 @@ if (isset($_POST['delete'])) {
    $cart_id = $_POST['cart_id'];
    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
    $delete_cart_item->execute([$cart_id]);
-   $message[] = 'cart item deleted!';
+   $success_msg[] = 'cart item deleted!';
 }
 
 if (isset($_POST['update_qty'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['update_qty'])) {
    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
    $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
    $update_qty->execute([$qty, $cart_id]);
-   $message[] = 'cart quantity updated';
+   $success_msg[] = 'cart quantity updated';
 }
 
 $grand_total = 0;
@@ -62,8 +62,7 @@ $grand_total = 0;
 
    <!-- shopping cart section starts  -->
 
-   <section class="container products">
-      <!-- <h1 class="title">your cart</h1> -->
+   <section class="container cart">
       <div class="row d-flex justify-content-around py-3 my-3">
          <?php
          $grand_total = 0;
@@ -72,7 +71,7 @@ $grand_total = 0;
          if ($select_cart->rowCount() > 0) {
             while ($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)) {
                ?>
-               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
+               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 24rem;">
                   <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
                   <img src="uploaded_img/<?= $fetch_cart['image']; ?>" alt="">
                   <div class="card-body">
@@ -80,16 +79,20 @@ $grand_total = 0;
                         <?= $fetch_cart['name']; ?>
                      </div>
                      <div class="d-flex justify-content-between fw-bold">
-                        <div class="card-text fs-4">Rp. <?= $fetch_cart['price']; ?></div>
+                        <div class="card-text fs-4">Rp.
+                           <?= $fetch_cart['price']; ?>
+                        </div>
                         <div class="card-text">
-                           <input type="number" name="qty" class="qty" min="1" max="99" value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
+                           <input type="number" name="qty" class="qty" min="1" max="99"
+                              value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
                            <button type="submit" class="fas fa-check" name="update_qty"></button>
                         </div>
                      </div>
                      <div class="sub-total">Total: Rp.
                         <?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>
                      </div>
-                     <button type="submit" class="fas fa-trash text-danger p-2 w-100" name="delete" onclick="return confirm('delete this item?');"></button>
+                     <button type="submit" class="fas fa-trash text-danger p-2 w-100" name="delete"
+                        onclick="return confirm('delete this item?');"></button>
                   </div>
                </form>
                <?php
@@ -99,7 +102,6 @@ $grand_total = 0;
             echo '<h1 class="d-flex align-items-center justify-content-center border shadow-sm" style="height: 60vh;">your cart is empty!</h1>';
          }
          ?>
-      </div>
 
       <div class="">
          <p>cart total : <span>Rp.
@@ -117,6 +119,7 @@ $grand_total = 0;
 
    <!-- custom js file link  -->
    <script src="js/script.js"></script>
+   <?php include 'components/alert.php' ?>
    <!-- custom js file link  -->
 
 </body>

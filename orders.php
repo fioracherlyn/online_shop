@@ -56,7 +56,7 @@ if (isset($_SESSION['user_id'])) {
             if ($select_orders->rowCount() > 0) {
                while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
                   ?>
-                  <div class="box">
+                  <div class="border">
                      <p>placed on : <span>
                            <?= $fetch_orders['placed_on']; ?>
                         </span></p>

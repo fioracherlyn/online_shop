@@ -49,7 +49,7 @@ $select_products->execute();
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
                ?>
-               <form action="" method="post" class="shadow-sm card py-2 mb-4 mb-4" style="width: 18rem;">
+               <form action="" method="post" class="shadow-sm card pt-3 mb-4 mb-4" style="width: 18rem;">
                   <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                   <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
                   <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
@@ -78,8 +78,9 @@ $select_products->execute();
          }
          ?>
       </div>
-
    </section>
+
+   <?php include 'components/footer.php'; ?>
 
   <!-- script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

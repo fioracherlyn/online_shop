@@ -41,8 +41,7 @@ $select_products->execute();
 <body>
   <?php include 'components/user_header.php'; ?>
 
-  <div class="container products">
-    <!-- carousel start -->
+  <!-- <div class="container products">
     <div id="carouselExampleIndicators" class="carousel slide py-4">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -74,7 +73,6 @@ $select_products->execute();
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <!-- carousel end -->
     <hr>
     <div class="row d-flex justify-content-around py-3 my-3">
       <?php
@@ -111,7 +109,28 @@ $select_products->execute();
       }
       ?>
     </div>
-  </div>
+  </div> -->
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container h-75">
+      <div class="row h-100" >
+        <div class="col-md-6 hero-tagline my-auto">
+          <h1>Website Online <br> Shopping Serba Ada</h1>
+          <p><span class="fw-bold">Fyou Shop</span> hadir untuk temukan online shop
+            untukmu, untuk membeli atau menjual dengan sumber
+            terpercaya.</p>
+
+          <a href="login.php" class="button-lg-primary p-4 px-5">Ayo Login</a>
+          <img src="assets/Right Arrow lg.png" alt="">
+        </div>
+      </div>
+
+      <img src="assets/shopping_cart.png" alt="" class="position-absolute end-0 bottom-0 img-hero ">
+    </div>
+  </section>
+
+  <?php include 'components/footer.php'; ?>
 
   <!-- script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -119,7 +138,6 @@ $select_products->execute();
   <?php include 'components/alert.php'; ?>
   <!-- script end -->
   
-  <?php include 'components/footer.php'; ?>
 </body>
 
 </html>

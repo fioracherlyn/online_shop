@@ -30,38 +30,37 @@ if (isset($message)) {
                      <a href="orders.php">my orders</a>
                   </li>
                   <li class="nav-item">
-                     <a href="contacts.php">contacts</a>
+                     <a href="contact.php">contact</a>
                   </li>
                </ul>
             </div>
-            <!-- <a href="shopping_cart.php" class="shopping-cart mx-5"><span class="fas fa-shopping-cart"></span></a> -->
-            <div class="cart-icon">
-               <?php
-               $count_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
-               $count_cart_items->execute([$user_id]);
-               $total_cart_items = $count_cart_items->rowCount();
-               ?>
-               <a href="cart.php" class="cart-btn">cart<span><?= $total_cart_items; ?></span></a>
-            </div>
-            <!-- menampilkan nama user di header ketika login -->
+
             <?php
             $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
             $select_profile->execute([$user_id]);
             if ($select_profile->rowCount() > 0) {
                $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                ?>
+               
+               <div class="cart-icon">
+                  <?php
+                  $count_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+                  $count_cart_items->execute([$user_id]);
+                  $total_cart_items = $count_cart_items->rowCount(); ?>
+                  <a href="cart.php" class="cart-btn">cart<span><?= $total_cart_items; ?></span></a>
+               </div>
                welcome,
-               <a href="profile.php" class="account_name"><?= $fetch_profile['name']; ?></a>
+               <a href="profile.php?uid=<?= $fetch_profile['name']; ?>" class="account_name"><?= $fetch_profile['name']; ?></a>
                <?php
             } else {
                ?>
                welcome, guest!   
+               <a href="register.php" class="btn btn-register ms-3">register</a>
                <a href="login.php" class="btn btn-login ms-3">login</a>
                <?php
             }
             ?>
 
-            <!-- menghilangkan tombol logout ketika user dalam keadaan tidak login -->
             <?php
             if ($select_profile->rowCount() <= 0) {
                $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);

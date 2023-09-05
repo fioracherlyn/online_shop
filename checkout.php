@@ -106,12 +106,13 @@ if (isset($_POST['submit'])) {
                      <?php
                   }
                } else {
-                  echo '<p class="empty color-danger bg-danger">your cart is empty!</p>';
+                  echo '<p class="empty text-danger">your cart is empty!</p>';
                }
                ?>
-               <p class="grand-total"><span class="name">grand total: </span><span class="price">Rp.
-                     <?= $grand_total; ?>
-                  </span></p>
+               <p class="grand-total">
+                  <span class="name">grand total: </span>
+                  <span class="price">Rp. <?= $grand_total; ?></span>
+               </p>
                <a href="cart.php" class="btn btn-outline-success">view cart</a>
             </div>
 
